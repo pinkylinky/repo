@@ -1,0 +1,133 @@
+include 'src:CACProxy:CACProxy_EJB'
+
+include 'src:UkrArm:UkrArm_API'
+include 'src:UkrArm:UkrArm_EJB'
+include 'src:UkrArm:UkrArm_WAR'
+include 'src:UkrArm:UkrArm_EAR'
+
+include 'src:UkrPUAdapters:UkrPUAdapters_API'
+include 'src:UkrPUAdapters:UkrPUAdapters_EJB'
+include 'src:UkrPUAdapters:UkrPUAdapters_EAR'
+include 'src:UkrPUAdapters:PortmoneAdapter_EJB'
+
+include 'src:UkrIntAdapters:UkrIntAdapters_API'
+include 'src:UkrIntAdapters:UkrIntAdapters_EJB'
+include 'src:UkrIntAdapters:UkrIntAdapters_EAR'
+include 'test_platform:emulators:B2Emulator:B2Emulator_WAR'
+include 'test_platform:emulators:B2Emulator:B2Emulator_EAR'
+include 'test_platform:emulators:SiebelWebEmu'
+
+include 'src:Commons:CACLib'
+include 'src:Commons:DAS_API'
+include 'src:Commons:FS_Common'
+include 'src:Commons:WAS_Utils'
+include 'src:Commons:PSMRegistrator_API'
+include 'src:Commons:JAXB_Common'
+include 'src:Commons:RBC_Common'
+include 'src:Commons:DataProxy_API'
+include 'src:Commons:DataProxy_Common'
+include 'src:Commons:DataProxyConfigurator_API'
+include 'src:Commons:DataProxyAdapters_API'
+include 'src:Commons:DataProxyMQ_Common'
+include 'src:Commons:CACDirectoryChangeListener_EJB'
+include 'src:Commons:Paycore_API'
+include 'src:Commons:Paycore_Common'
+include 'src:Commons:Oddo_API'
+include 'src:Commons:StopList_Common'
+include 'src:Commons:Gateways_Common'
+include 'src:Commons:LOADER_Common'
+include 'src:Commons:NSI_Common'
+include 'src:Commons:Auth_Common'
+
+include 'src:Commons:FES_API'
+include 'src:Commons:MC_Parser'
+include 'src:Commons:FES_Common'
+include 'src:Commons:UIDGenerator_API'
+
+include 'src:Commons:PMID_EJB_API'
+include 'src:Commons:RecalcSum_Common'
+include 'src:Commons:Remote_Common'
+include 'src:Commons:Verification_Common'
+include 'src:Commons:FastDAO'
+
+include 'src:Commons:SecurityService_Common'
+
+include 'src:DAS:DAS_Core'
+include 'src:DAS:DAS_EAR'
+include 'src:DAS:DAS_EJB'
+include 'src:DAS:DAS_JPA'
+include 'src:DAS:DAS_WAR'
+
+include 'src:DataProxy:DataProxy_EAR'
+include 'src:DataProxy:DataProxy_EJB'
+include 'src:DataProxy:DataProxy_WAR'
+include 'src:DataProxy:DataProxy_WS'
+include 'src:DataProxy:DataProxyConfigurator_EJB'
+include 'src:DataProxy:DataProxyMQProcessor_EJB'
+include 'src:DataProxy:DataProxyMQResponseReader_EJB'
+include 'src:DataProxy:DataProxyAdapters_EJB'
+include 'src:DataProxy:DataProxyAdapter_Client'
+
+include 'src:DMS:DMS_Core'
+include 'src:DMS:DMS_EAR'
+include 'src:DMS:DMS_EJB'
+include 'src:DMS:DMS_JPA'
+include 'src:DMS:DMS_WAR'
+
+include 'src:Paycore:Paycore_EAR'
+include 'src:Paycore:PaycoreInput:PaymentInput_EJB'
+include 'src:Paycore:PaycoreInput:PaymentInput_WS'
+include 'src:Paycore:PaycoreInput:PaymentInputConfigurator_API'
+include 'src:Paycore:PaycoreInput:PaymentInputConfigurator_EJB'
+
+include 'src:Paycore:PaycoreNavigation:PaycoreNavigation_EJB'
+include 'src:Paycore:PaycoreNavigation:PaycoreNavigation_WS'
+
+include 'src:Paycore:PaycoreReversal:PaycoreReversal_EJB'
+include 'src:Paycore:PaycoreReversal:PaycoreReversal_WS'
+
+include 'src:Paycore:PaycoreServices:PaycoreServices_EJB'
+include 'src:Paycore:PaycoreServices:PaycoreServices_WS'
+
+include 'src:Paycore:PaycoreSuspendedWrite:PaycoreSuspendedWrite_EJB'
+include 'src:Paycore:PaycoreSuspendedWrite:PaycoreSuspendedWrite_WS'
+
+include 'src:Paycore:PaycoreWrite:PaycoreWrite_EJB'
+include 'src:Paycore:PaycoreWrite:PaycoreWrite_WS'
+
+include 'src:UIDGenerator:UIDGenerator_EJB'
+include 'src:UIDGenerator:UIDGenerator_WS'
+
+include 'src:Executor:Executor_EJB'
+
+include 'src:PSM:PSM_EAR'
+include 'src:PSM:PSMInit_WAR'
+include 'src:PSM:PSMListener_EJB'
+include 'src:PSM:PSMTest_WS'
+
+include 'src:MainWebApp:MAIN_EAR'
+include 'src:MainWebApp:MAIN_WAR'
+
+include 'utilities:ServiceMigrationUtility'
+
+include 'src:PSMAdapter:PSMAdapter_EAR'
+include 'src:PSMAdapter:PSMMonitor_WS'
+include 'src:PSMAdapter:PSMRegistrator_EJB'
+include 'src:PSMAdapter:PSMRegistrator_WS'
+//include 'src:PSMAdapter:PSMStandaloneClient'
+include 'src:PSMAdapter:PSMTest_WAR'
+
+include 'src:PaymentTransaction:PaymentTransaction_API'
+include 'src:PaymentTransaction:PaymentTransaction_Core'
+include 'src:PaymentTransaction:PaymentTransaction_EAR'
+include 'src:PaymentTransaction:PaymentTransaction_EJB'
+
+include 'src:SecurityService:SecurityService_EJB'
+include 'src:SecurityService:SecurityService_EAR'
+
+include 'src:Verification:VerificationCore_EJB'
+include 'src:Verification:Verification_WAR'
+include 'src:Verification:Verification_EAR'
+include 'src:Verification:VerificationTest'
+
+include 'utilities:Configurator'

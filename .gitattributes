@@ -1,0 +1,3 @@
+*.sh eol=lf
+*.shtmpl eol=lf
+

@@ -1,0 +1,11 @@
+jar.enabled = false
+subprojects {
+
+    test {
+         // disable the test task and clear out its dependencies, so it does nothing
+         enabled = false
+         dependsOn = []
+    }
+
+}
+
