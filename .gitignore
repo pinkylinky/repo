@@ -1,6 +1,14 @@
-*.class
-
 # Package Files #
 *.jar
 *.war
 *.ear
+
+*.out
+*.log
+bin
+build
+out
+ejbOutputModule
+classes
+*.class
+/temp
