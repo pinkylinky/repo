@@ -3,11 +3,9 @@ import net.jmatrix.eproperties.EProperties
 EProperties p = new EProperties()
 p.load(new FileInputStream(rootProject.projectDir.absolutePath + '/src/common.properties'))
 p.load(new FileInputStream(rootProject.projectDir.absolutePath + '/user.properties'))
-p.load(new FileInputStream(rootProject.projectDir.absolutePath + '/scripts/earScripts/profiles/' + p.getProperty('profile','default') + '.properties'))
 
 project.ext {
     JAVA_HOME=p.getProperty('JAVA_HOME')
-    WAS_HOME=p.getProperty('WAS_HOME')
     DEBUG=true
     MAJOR_VERSION='1'
     MINOR_VERSION='0.0'
@@ -32,37 +30,8 @@ subprojects {
         flatDir {
             dirs rootProject.projectDir.absolutePath +'/libs'
         }
-        //flatDir {
-        //    dirs rootProject.projectDir.absolutePath +'/temp/libs'
-        //}
-        flatDir {
-            dirs project.WAS_HOME + '/dev/JavaEE'
-        }
-        flatDir {
-            dirs project.WAS_HOME + '/dev/'
-        }
-        flatDir {
-            dirs project.WAS_HOME + '/feature_packs/jpa/dev'
-        }
-        flatDir {
-            dirs project.WAS_HOME + '/feature_packs/jpa/runtimes'
-        }
-        flatDir {
-            dirs project.WAS_HOME + '/feature_packs/xml/plugins'
-        }
-	flatDir {
-            dirs project.WAS_HOME + '/runtimes'
-        }
-        flatDir {
-            dirs project.WAS_HOME + '/runtimes/endorsed'
-        }
-        flatDir {
-            dirs project.WAS_HOME + '/plugins'
-        }
-        flatDir {
-            dirs project.WAS_HOME + '/installedConnectors/wmq.jmsra.rar'
-        }
     }
+
 
 	apply plugin: 'java'
     	compileJava { 
@@ -78,11 +47,6 @@ subprojects {
 				dirs rootProject.projectDir.absolutePath +'/libs'
 			}
         	}
-
-        	dependencies {
-           		classpath  ':gradle-jrebel-plugin:1.0.3-20121029.091929-1'
-	            	classpath  ':commons-lang'
-        	}
     	}
 
 	// определяем зависимости которые предоставляются сервером приложений
@@ -92,29 +56,6 @@ subprojects {
 		serverShared
 	}
 	
-	dependencies {
-		// изза того что в com.ibm.ws.jpa.thinclient_JPA2FEP1.0.0 входят старые commons-lang классы 
-		provided ':commons-lang'
-		// websphere xml feature pack
-		provided ':com.ibm.xml'
-		// websphere jpa feature pacj with annotation processor
-		provided ':com.ibm.ws.jpa.thinclient_JPA2FEP1.0.0'
-		// websphere j2ee interface
-	 	provided ':j2ee'
-		// websphere public interface
-		provided ':was_public'
-		// websphere webservices 
-		provided ':com.ibm.ws.admin.core'
-		provided ':com.ibm.ws.runtime'
-		provided ':com.ibm.ws.ejbportable'
-		provided ':com.ibm.ws.prereq.soap'
-		// websphere mq
-		provided ':com.ibm.mq'	
-		provided ':com.ibm.mq.jmqi'
-		provided ':com.ibm.mqjms'	
-		serverShared ':ehcache-core:2.5.0'
-	}
-
 	sourceSets {
 		main { 
 			compileClasspath += configurations.provided
