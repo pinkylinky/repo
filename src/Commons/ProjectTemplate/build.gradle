@@ -1,0 +1,12 @@
+apply plugin: 'java'
+
+dependencies {
+
+	compile project(':src:Commons:Logger_Common')	
+	testCompile ':junit'	
+}
+
+
+
+
+
