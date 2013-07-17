@@ -1,0 +1,9 @@
+apply plugin: 'java'
+
+dependencies {
+	compile ':log4j-1.2.16'	
+}
+
+
+
+
