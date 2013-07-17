@@ -12,3 +12,8 @@ ejbOutputModule
 classes
 *.class
 /temp
+
+user.properties
+
+.metadata/*
+.gradle/*
