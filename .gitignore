@@ -17,3 +17,7 @@ user.properties
 
 .metadata/*
 .gradle/*
+
+.classpath
+.project
+.settings
