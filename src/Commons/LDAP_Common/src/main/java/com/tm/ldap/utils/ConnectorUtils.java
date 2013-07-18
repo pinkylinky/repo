@@ -13,11 +13,11 @@ import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 
+import com.tm.utils.Logger;
+import com.tm.utils.StringUtils;
 import com.tm.ldap.config.LDAPConfiguration;
 import com.tm.ldap.exception.LDAPException;
 import com.tm.ldap.exception.LDAPIncorrectLoginPassword;
-import com.tm.ldap.utils.StringUtils;
-import com.tm.logger.utils.Logger;
 
 public class ConnectorUtils {
 
@@ -61,14 +61,14 @@ public class ConnectorUtils {
 //		boolean result = false;
 		InitialDirContext ctx = null;
 		
-		if (StringUtils.isBlank(login) || StringUtils.isBlank(password))
+		if (StringUtils.isNullOrEmpty(login) || StringUtils.isNullOrEmpty(password))
 			throw new LDAPException("Не задан логин или пароль");
 		
-		if (StringUtils.isBlank(ldapUrl)
+		if (StringUtils.isNullOrEmpty(ldapUrl)
 				|| baseDN == null
-				|| StringUtils.isBlank(bindName)
-				|| StringUtils.isBlank(bindPassword)
-				|| StringUtils.isBlank(userIdMap)) {
+				|| StringUtils.isNullOrEmpty(bindName)
+				|| StringUtils.isNullOrEmpty(bindPassword)
+				|| StringUtils.isNullOrEmpty(userIdMap)) {
 			throw new LDAPException("Не заданы параметры сервера LDAP");
 		}
 		try {
@@ -84,9 +84,9 @@ public class ConnectorUtils {
 				logger.debug("userObjectClass defined as=" + userObjectClass);
 				logger.debug("userIdAttribute defined as=" + userIdAttribute);
 				if (StringUtils
-						.isBlank(userObjectClass)
+						.isNullOrEmpty(userObjectClass)
 						|| StringUtils
-								.isBlank(userIdAttribute)) {
+								.isNullOrEmpty(userIdAttribute)) {
 					logger.debug("incorrect user ID Map");
 					continue;
 				}
@@ -117,7 +117,7 @@ public class ConnectorUtils {
 					logger.debug("userId defined as=" + userId);
 					userDN = sr.getNameInNamespace();
 					logger.debug("userDN defined as=" + userDN);
-					if (StringUtils.isNotBlank(userDN)) {
+					if (!StringUtils.isNullOrEmpty(userDN)) {
 						if (checkCredentials(ldapUrl, userDN, password)) {
 							return attrs;
 						} else {
@@ -148,7 +148,7 @@ public class ConnectorUtils {
 		
 		InitialDirContext ctx = null;
 		
-		if (StringUtils.isBlank(login))
+		if (StringUtils.isNullOrEmpty(login))
 			throw new LDAPException("Не задан логин");
 		
 		String ldapUrl = config.getLdapUrl();
@@ -157,11 +157,11 @@ public class ConnectorUtils {
 		String baseDN = config.getBaseDN();
 		String userIdMap = config.getUserIdMap();
 		
-		if (StringUtils.isBlank(ldapUrl)
+		if (StringUtils.isNullOrEmpty(ldapUrl)
 				|| baseDN == null
-				|| StringUtils.isBlank(bindName)
-				|| StringUtils.isBlank(bindPassword)
-				|| StringUtils.isBlank(userIdMap)) {
+				|| StringUtils.isNullOrEmpty(bindName)
+				|| StringUtils.isNullOrEmpty(bindPassword)
+				|| StringUtils.isNullOrEmpty(userIdMap)) {
 			throw new LDAPException("Не заданы параметры сервера LDAP");
 		}
 		try {
@@ -177,9 +177,9 @@ public class ConnectorUtils {
 				logger.debug("userObjectClass defined as=" + userObjectClass);
 				logger.debug("userIdAttribute defined as=" + userIdAttribute);
 				if (StringUtils
-						.isBlank(userObjectClass)
+						.isNullOrEmpty(userObjectClass)
 						|| StringUtils
-								.isBlank(userIdAttribute)) {
+								.isNullOrEmpty(userIdAttribute)) {
 					logger.debug("incorrect user ID Map");
 					continue;
 				}
@@ -292,7 +292,7 @@ public class ConnectorUtils {
 		String consFilter = constCriteria.toString();
 
 		String resultFilter = null;
-		if (StringUtils.isBlank(userFilter)) {
+		if (StringUtils.isNullOrEmpty(userFilter)) {
 			resultFilter = consFilter;
 		} else {
 			StringBuffer resultFilterBuffer = new StringBuffer();

@@ -1,4 +1,4 @@
-package com.tm.logger.utils;
+package com.tm.utils;
 
 public class Logger {
 	

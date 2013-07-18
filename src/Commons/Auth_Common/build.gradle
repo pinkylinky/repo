@@ -1,6 +1,7 @@
 apply plugin: 'java'
 
 dependencies {
+	compile project(':src:Commons:Common_Utils')		
 	compile project(':src:Commons:LDAP_Common')		
 	compile(':j2ee')		
 	testCompile ':junit'	
