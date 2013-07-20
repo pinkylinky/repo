@@ -1,3 +1,4 @@
-include 'src:Commons:Common_Utils'
-include 'src:Commons:LDAP_Common'
-include 'src:Commons:Auth_Common'
+include 'src:commons:common-utils'
+include 'src:commons:ldap-common'
+include 'src:commons:auth-common'
+include 'src:commons:jdbc-utils'

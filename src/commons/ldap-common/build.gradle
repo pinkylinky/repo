@@ -2,7 +2,7 @@ apply plugin: 'java'
 
 dependencies {
 
-	compile project(':src:Commons:Common_Utils')	
+	compile project(':src:commons:common-utils')	
 	compile ':j2ee'	
 	testCompile ':junit'	
 }

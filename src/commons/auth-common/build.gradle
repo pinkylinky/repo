@@ -1,0 +1,9 @@
+apply plugin: 'java'
+
+dependencies {
+	compile project(':src:commons:common-utils')		
+	compile project(':src:commons:ldap-common')		
+	compile(':j2ee')		
+	testCompile ':junit'	
+}
+
