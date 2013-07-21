@@ -3,8 +3,10 @@ apply plugin: 'java'
 dependencies {
 
 	compile project(':src:commons:common-utils')	
-	compile ':db2jcc4'	
+	compile ':db2jcc4'
+	
 	testCompile ':junit'	
+	testCompile ':derby'	
 }
 
 
