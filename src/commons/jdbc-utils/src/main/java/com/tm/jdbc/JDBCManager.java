@@ -2,6 +2,7 @@ package com.tm.jdbc;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Map;
 
 import com.tm.jdbc.dbtype.ColumnDescriptor;
 import com.tm.jdbc.dbtype.DBDescriptor;
@@ -59,6 +60,30 @@ public class JDBCManager {
 			DBDescriptor descriptor = connector.getDBDescriptor();
 			String command = descriptor.getDropColumnSQLCommand(tableName, columnName);
 			JDBCUtils.execute(con, command);
+		} finally {
+			JDBCUtils.closeConnection(con);
+		}
+	}
+	
+	public int insert(String tableName, Map<String, Object> data) throws SQLException  {
+		Connection con = null;
+		try {
+			con = connector.getConnection();
+			DBDescriptor descriptor = connector.getDBDescriptor();
+			String command = descriptor.getInsertSQLCommand(tableName, data.keySet().toArray(new String[]{}));
+			return JDBCUtils.execute(con, command, data.values().toArray(new Object[]{}));
+		} finally {
+			JDBCUtils.closeConnection(con);
+		}
+	}
+	
+	public int update(String tableName, String searchCondition, Map<String, Object> data) throws SQLException  {
+		Connection con = null;
+		try {
+			con = connector.getConnection();
+			DBDescriptor descriptor = connector.getDBDescriptor();
+			String command = descriptor.getUpdateSQLCommand(tableName, searchCondition, data.keySet().toArray(new String[]{}));
+			return JDBCUtils.execute(con, command, data.values().toArray(new Object[]{}));
 		} finally {
 			JDBCUtils.closeConnection(con);
 		}
