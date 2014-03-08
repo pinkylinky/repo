@@ -1,4 +1,4 @@
-package com.tm.utils;
+package com.tm.utils.datatypes;
 
 public class BooleanUtils {
 	

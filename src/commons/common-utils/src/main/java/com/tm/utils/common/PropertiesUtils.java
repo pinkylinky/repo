@@ -1,10 +1,12 @@
-package com.tm.utils;
+package com.tm.utils.common;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Properties;
+
+import com.tm.utils.datatypes.DateUtils;
 
 public class PropertiesUtils {
 	

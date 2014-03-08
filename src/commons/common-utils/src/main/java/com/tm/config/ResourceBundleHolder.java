@@ -5,7 +5,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import com.tm.utils.StringUtils;
+import com.tm.utils.datatypes.StringUtils;
 
 public class ResourceBundleHolder {
 	

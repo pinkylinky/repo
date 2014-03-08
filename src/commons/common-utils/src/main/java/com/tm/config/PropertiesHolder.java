@@ -3,7 +3,7 @@ package com.tm.config;
 import java.io.IOException;
 import java.util.Properties;
 
-import com.tm.utils.PropertiesUtils;
+import com.tm.utils.common.PropertiesUtils;
 
 public class PropertiesHolder {
 	

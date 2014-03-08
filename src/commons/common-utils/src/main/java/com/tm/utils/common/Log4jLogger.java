@@ -1,15 +1,16 @@
-package com.tm.utils;
+package com.tm.utils.common;
 
-public class Logger {
+public class Log4jLogger extends Logger {
 	
-	private org.apache.log4j.Logger logger;
+private org.apache.log4j.Logger logger;
 	
-	private Logger(Class clazz) {
+	protected Log4jLogger(Class clazz) {
+		super(clazz);
 		logger = org.apache.log4j.Logger.getLogger(clazz.getName());
 	}
 	
-	public static Logger getLogger(Class clazz) {
-		return new Logger(clazz);
+	public static Log4jLogger getLogger(Class clazz) {
+		return new Log4jLogger(clazz);
 	}
 	
 	public void error(String message, String... args) {

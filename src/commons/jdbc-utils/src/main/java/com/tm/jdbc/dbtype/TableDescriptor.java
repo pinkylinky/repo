@@ -32,4 +32,8 @@ public class TableDescriptor {
 	public void setColumns(List<ColumnDescriptor> columns) {
 		this.columns = columns;
 	}
+	
+	public String getFK() {
+		return name + "_ID";
+	}
 }

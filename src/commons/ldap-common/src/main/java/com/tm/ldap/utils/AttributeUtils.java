@@ -10,7 +10,7 @@ import javax.naming.directory.Attributes;
 
 import com.tm.ldap.config.LDAPConst;
 import com.tm.ldap.entity.LDAPUser;
-import com.tm.utils.Logger;
+import com.tm.utils.common.Logger;
 
 public class AttributeUtils {
 	

@@ -4,8 +4,8 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.Properties;
 
-import com.tm.utils.PropertiesUtils;
-import com.tm.utils.StringUtils;
+import com.tm.utils.common.PropertiesUtils;
+import com.tm.utils.datatypes.StringUtils;
 
 public class Configurator {
 	

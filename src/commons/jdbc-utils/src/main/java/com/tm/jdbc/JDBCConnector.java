@@ -19,6 +19,12 @@ public class JDBCConnector {
 		connectionString = descriptor.getConnectionString(host, port, dbName, username, password);
 	}
 	
+	public JDBCConnector(DBConfig config) {
+		descriptor = DBDescriptorFactory.getDBDescriptor(config.getDbType());
+		connectionString = descriptor.getConnectionString(config.getHost(), config.getPort(), 
+				config.getDbName(), config.getUsername(), config.getPassword());
+	}
+	
 	public Connection getConnection() throws SQLException {
 		return JDBCUtils.getConnection(connectionString);
 	}

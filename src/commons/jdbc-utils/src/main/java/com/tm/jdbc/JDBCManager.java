@@ -1,13 +1,20 @@
 package com.tm.jdbc;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.tm.jdbc.dbtype.ColumnDescriptor;
 import com.tm.jdbc.dbtype.DBDescriptor;
 import com.tm.jdbc.dbtype.TableDescriptor;
 import com.tm.jdbc.utils.JDBCUtils;
+import com.tm.utils.common.ReflectionUtils;
+import com.tm.utils.common.ReflectionUtils.FieldDescriptor;
 
 public class JDBCManager {
 	
@@ -17,13 +24,17 @@ public class JDBCManager {
 		this.connector = connector;
 	}
 	
+	public JDBCConnector getJDBCConnector() { 
+		return connector;
+	}
+	
 	public void createTable(TableDescriptor table) throws SQLException  {
 		Connection con = null;
 		try {
 			con = connector.getConnection();
 			DBDescriptor descriptor = connector.getDBDescriptor();
 			String command = descriptor.getCreateTableSQLCommand(table);
-			JDBCUtils.execute(con, command);
+			JDBCUtils.update(con, command);
 		} finally {
 			JDBCUtils.closeConnection(con);
 		}
@@ -35,7 +46,7 @@ public class JDBCManager {
 			con = connector.getConnection();
 			DBDescriptor descriptor = connector.getDBDescriptor();
 			String command = descriptor.getDropTableSQLCommand(tableName);
-			JDBCUtils.execute(con, command);
+			JDBCUtils.update(con, command);
 		} finally {
 			JDBCUtils.closeConnection(con);
 		}
@@ -47,7 +58,7 @@ public class JDBCManager {
 			con = connector.getConnection();
 			DBDescriptor descriptor = connector.getDBDescriptor();
 			String command = descriptor.getAddColumnSQLCommand(tableName, column);
-			JDBCUtils.execute(con, command);
+			JDBCUtils.update(con, command);
 		} finally {
 			JDBCUtils.closeConnection(con);
 		}
@@ -59,19 +70,21 @@ public class JDBCManager {
 			con = connector.getConnection();
 			DBDescriptor descriptor = connector.getDBDescriptor();
 			String command = descriptor.getDropColumnSQLCommand(tableName, columnName);
-			JDBCUtils.execute(con, command);
+			JDBCUtils.update(con, command);
 		} finally {
 			JDBCUtils.closeConnection(con);
 		}
 	}
 	
-	public int insert(String tableName, Map<String, Object> data) throws SQLException  {
+	
+	
+	public long insert(String tableName, Map<String, Object> data) throws SQLException  {
 		Connection con = null;
 		try {
 			con = connector.getConnection();
 			DBDescriptor descriptor = connector.getDBDescriptor();
 			String command = descriptor.getInsertSQLCommand(tableName, data.keySet().toArray(new String[]{}));
-			return JDBCUtils.execute(con, command, data.values().toArray(new Object[]{}));
+			return JDBCUtils.insert(con, command, data.values().toArray(new Object[]{}));
 		} finally {
 			JDBCUtils.closeConnection(con);
 		}
@@ -83,7 +96,7 @@ public class JDBCManager {
 			con = connector.getConnection();
 			DBDescriptor descriptor = connector.getDBDescriptor();
 			String command = descriptor.getUpdateSQLCommand(tableName, searchCondition, data.keySet().toArray(new String[]{}));
-			return JDBCUtils.execute(con, command, data.values().toArray(new Object[]{}));
+			return JDBCUtils.update(con, command, data.values().toArray(new Object[]{}));
 		} finally {
 			JDBCUtils.closeConnection(con);
 		}
@@ -103,10 +116,11 @@ public class JDBCManager {
 		Connection con = null;
 		try {
 			con = connector.getConnection();
-			return JDBCUtils.execute(con, query, params);
+			return JDBCUtils.update(con, query, params);
 		} finally {
 			JDBCUtils.closeConnection(con);
 		}
 	}
+	
 
 }

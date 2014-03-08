@@ -9,8 +9,12 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import com.tm.utils.DateUtils;
-import com.tm.utils.PropertiesUtils;
+import com.tm.config.ConfigMetadata;
+import com.tm.config.ConfigParamMetadata;
+import com.tm.config.Configuration;
+import com.tm.config.Configurator;
+import com.tm.utils.common.PropertiesUtils;
+import com.tm.utils.datatypes.DateUtils;
 
 public class ConfiguratorTest {
 	

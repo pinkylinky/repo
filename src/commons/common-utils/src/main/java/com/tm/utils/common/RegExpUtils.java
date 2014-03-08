@@ -1,4 +1,4 @@
-package com.tm.utils;
+package com.tm.utils.common;
 
 import java.util.ArrayList;
 import java.util.HashMap;

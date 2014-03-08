@@ -15,7 +15,7 @@ import com.tm.auth.exception.IncorrectLoginPasswordException;
 import com.tm.auth.strategy.AuthStrategy;
 import com.tm.auth.utils.AuthUtils;
 import com.tm.auth.entity.AuthPrincipal;
-import com.tm.utils.Logger;
+import com.tm.utils.common.Logger;
 
 /**
  * Абстрактный фильтр для аутентификации<br>

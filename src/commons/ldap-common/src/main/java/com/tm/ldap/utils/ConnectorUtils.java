@@ -13,8 +13,8 @@ import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 
-import com.tm.utils.Logger;
-import com.tm.utils.StringUtils;
+import com.tm.utils.common.Logger;
+import com.tm.utils.datatypes.StringUtils;
 import com.tm.ldap.config.LDAPConfiguration;
 import com.tm.ldap.exception.LDAPException;
 import com.tm.ldap.exception.LDAPIncorrectLoginPassword;
