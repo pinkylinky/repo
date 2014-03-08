@@ -169,7 +169,7 @@ public class JDBCUtils {
 		}
 		String tableName = obj.getClass().getSimpleName();
 		String command = dbDescriptor.getInsertSQLCommand(tableName, data.keySet().toArray(new String[]{}));
-		return update(con, command, data.values().toArray(new Object[]{}));
+		return insert(con, command, data.values().toArray(new Object[]{}));
 	}
 
 }

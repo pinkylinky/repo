@@ -4,9 +4,11 @@ public class AppManager {
 	
 	private static AppManager instance;
 	private AppConfig config;
+	private ResourceManager resourceManager = new ResourceManager();
 	
-	public static void init(AppConfig config) {
+	public static AppManager init(AppConfig config) {
 		instance = new AppManager(config);
+		return instance;
 	}
 	
 	public static AppManager getInstance() {
@@ -20,6 +22,9 @@ public class AppManager {
 	public AppConfig getConfig() {
 		return config;
 	}
-	
+
+	public ResourceManager getResourceManager() {
+		return resourceManager;
+	}
 	
 }

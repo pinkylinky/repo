@@ -7,6 +7,8 @@ import java.util.Map;
 
 import com.tm.core.AppConfigurator;
 import com.tm.core.AppManager;
+import com.tm.dao.ItemsDao;
+import com.tm.entity.ItemGroup;
 import com.tm.jdbc.JDBCConnector;
 import com.tm.jdbc.JDBCManager;
 import com.tm.jdbc.dbtype.ColumnDescriptor;
@@ -18,8 +20,6 @@ public class DBCreator {
 	private static final List<TableDescriptor> tables = new ArrayList<TableDescriptor>();
 	
 	public static void main(String[] args) throws Exception {
-		
-		boolean isCreate = false;
 		
 		AppConfigurator.configureDefault();
 		JDBCConnector connector = new JDBCConnector(AppManager.getInstance().getConfig().getDbConfig());
@@ -33,26 +33,52 @@ public class DBCreator {
 		
 		
 		for (TableDescriptor table : tables) {
-			manager.dropTable(table.getName());
+			try {
+				manager.dropTable(table.getName());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			manager.createTable(table);
-			
-
-			
-			
-//			if (isCreate) {
-//				manager.createTable(table);
-//			} else {
-//				manager.dropTable(table.getName());
-//			}
 		}
 		
-		long item1Id = manager.insert(items.getName(), createEntityData(1));
-		long item2Id = manager.insert(items.getName(), createEntityData(2));
-		long itemGroupId = manager.insert(itemsGroup.getName(), createEntityData(2));
-		manager.insert(items_itemsGroup.getName(), 
-				createAssociationData(items.getFK(), item1Id, itemsGroup.getFK(), itemGroupId));
-		manager.insert(items_itemsGroup.getName(), 
-				createAssociationData(items.getFK(), item2Id, itemsGroup.getFK(), itemGroupId));
+		ItemsDao dao = AppManager.getInstance().getResourceManager().getItemsDao();
+		
+		ItemGroup itemGroup = new ItemGroup();
+		itemGroup.setName("Root 1");
+		dao.addGroup(itemGroup);
+		
+		itemGroup = new ItemGroup();
+		itemGroup.setName("Root 2");
+		long rootGroupId = dao.addGroup(itemGroup);
+		
+		itemGroup = new ItemGroup();
+		itemGroup.setName("Child 1");
+		itemGroup.setParentGroupId(rootGroupId);
+		long groupId = dao.addGroup(itemGroup);
+		
+		itemGroup = new ItemGroup();
+		itemGroup.setName("Child Child 1");
+		itemGroup.setParentGroupId(groupId);
+		groupId = dao.addGroup(itemGroup);
+		
+		itemGroup = new ItemGroup();
+		itemGroup.setName("Child 2");
+		itemGroup.setParentGroupId(rootGroupId);
+		groupId = dao.addGroup(itemGroup);
+		
+		itemGroup = new ItemGroup();
+		itemGroup.setName("Child Child 2");
+		itemGroup.setParentGroupId(groupId);
+		groupId = dao.addGroup(itemGroup);
+		
+		
+//		long item1Id = manager.insert(items.getName(), createEntityData(1));
+//		long item2Id = manager.insert(items.getName(), createEntityData(2));
+//		long itemGroupId = manager.insert(itemsGroup.getName(), createEntityData(2));
+//		manager.insert(items_itemsGroup.getName(), 
+//				createAssociationData(items.getFK(), item1Id, itemsGroup.getFK(), itemGroupId));
+//		manager.insert(items_itemsGroup.getName(), 
+//				createAssociationData(items.getFK(), item2Id, itemsGroup.getFK(), itemGroupId));
 		
 	}
 	
@@ -75,7 +101,12 @@ public class DBCreator {
 	}
 	
 	private static TableDescriptor createItemsGroupTableDescriptor() {
-		TableDescriptor table = createCommonTableDescriptor("ITEM_GROUP");
+		TableDescriptor table = createCommonTableDescriptor("ITEMGROUP");
+		List<ColumnDescriptor> columns = new ArrayList<ColumnDescriptor>();
+		columns.add(new ColumnDescriptor("ID", DataType.LONG, true, true));
+		columns.add(new ColumnDescriptor("NAME", DataType.STRING, true));
+		columns.add(new ColumnDescriptor("PARENTGROUPID", DataType.LONG));
+		table.setColumns(columns);
 		return table;
 	}
 	
